@@ -167,4 +167,9 @@ Passo 6 - Resolução das questões de negócios a partir da solução construí
 
     Tecnologias utilizadas: Power BI
 
+A empresa pretende que seja implementada uma solução que permita analisar a quantidade e duração de segmentos de chamada:
+ - Por motivo de contacto
+ - Por linha de atendimento por onde a chamada entrou	
+ - Por quem tratou da chamada do cliente
+
 
