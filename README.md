@@ -33,3 +33,26 @@ ___________________________________________
 
 Passo 1 - Entendimento das tabelas
 
+    Tecnologias utilizadas: Excel
+
+Passo 2 - Ingestão e Tratamento dos dados
+
+    Tecnologias utilizadas: SQL Server Management Studio, Excel
+
+Passo 3 - Modelagem Conceitual e Física
+
+    Tecnologias utilizadas: ExcaliDraw, Draw io
+
+Passo 4 - Construção do modelo adotado
+
+    Tecnologias utilizadas: SQL Server Management Studio
+
+Passo 5 - Construção DataViz
+
+    Tecnologias utilizadas:  SQL Server Management Studio, Power BI, Figma
+
+Passo 6 - Resolução das questões de negócios a partir da solução construída
+
+    Tecnologias utilizadas: Power BI
+
+
