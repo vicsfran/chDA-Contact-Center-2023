@@ -164,7 +164,7 @@ Passo 5 - Construção DataViz
 
 Dashboard
 
-![Dash](https://app.powerbi.com/view?r=eyJrIjoiZDM0ZTg0ZTYtMjg5MC00ZmJjLTlhZmUtZmQ1OGQ3NDgyNWFjIiwidCI6IjgyYTU4NjE2LTY4ZDYtNDA1MS05Y2E5LWIyY2U2YmE1MjEzNCJ9&pageName=ReportSectione7a643de1916c78ede94)
+[Dash](https://app.powerbi.com/view?r=eyJrIjoiZDM0ZTg0ZTYtMjg5MC00ZmJjLTlhZmUtZmQ1OGQ3NDgyNWFjIiwidCI6IjgyYTU4NjE2LTY4ZDYtNDA1MS05Y2E5LWIyY2U2YmE1MjEzNCJ9&pageName=ReportSectione7a643de1916c78ede94)
 
 Passo 6 - Resolução das questões de negócios a partir da solução construída
 
