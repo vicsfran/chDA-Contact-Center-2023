@@ -51,7 +51,7 @@ O modelo starschema geralmente é o mais adequado onde se preza por cenários qu
 
 O modelo abaixo foi construído a partir das databases que foram entregues:
 
-![Modelo1] (https://github.com/vicsfran/chDA-Contact-Center-2023/tree/986dd73584a92ccf4e19be380176bd57d68eae79/Assets)
+[Modelo1] (https://github.com/vicsfran/chDA-Contact-Center-2023/tree/986dd73584a92ccf4e19be380176bd57d68eae79/Assets)
 
 Cada ligação, pode gerar ou não um ticket de atendimento o que me da uma relação de 1 pra muitos.
 
