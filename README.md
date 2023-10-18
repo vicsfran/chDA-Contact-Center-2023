@@ -53,7 +53,7 @@ O modelo abaixo foi construído a partir das databases que foram entregues.
 
 **Modelo original**
 
-![Modelo] (https://github.com/vicsfran/chDA-Contact-Center-2023/blob/9f1e683badc8ea10bc580a1081fedc76a9bdbfb6/Assets/Modelo%20original%20database.jpg)
+![Modelo](https://github.com/vicsfran/chDA-Contact-Center-2023/blob/9f1e683badc8ea10bc580a1081fedc76a9bdbfb6/Assets/Modelo%20original%20database.jpg)
 
 **Modelo starschema**
 
