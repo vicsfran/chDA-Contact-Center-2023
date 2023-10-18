@@ -49,11 +49,15 @@ O modelo adotado foi o starschema. Esse modelo  foi escolhido como forma de gara
 
 O modelo starschema geralmente é o mais adequado onde se preza por cenários que a simplicidade e o desempenho são essenciais na ponta final do consumo dos dados.
 
-O modelo abaixo foi construído a partir das databases que foram entregues:
+O modelo abaixo foi construído a partir das databases que foram entregues.
 
-![Modelo](https://github.com/vicsfran/chDA-Contact-Center-2023/blob/b167a485948d2dff7019aff639f58a5823112824/Assets/STARSCHEMA%20-%20Modelo%20L%C3%B3gico.png)
+**Modelo original**
 
-Cada ligação, pode gerar ou não um ticket de atendimento o que me da uma relação de 1 pra muitos.
+![Modelo] (https://github.com/vicsfran/chDA-Contact-Center-2023/blob/9f1e683badc8ea10bc580a1081fedc76a9bdbfb6/Assets/Modelo%20original%20database.jpg)
+
+**Modelo starschema**
+
+![Modelo1](https://github.com/vicsfran/chDA-Contact-Center-2023/blob/b167a485948d2dff7019aff639f58a5823112824/Assets/STARSCHEMA%20-%20Modelo%20L%C3%B3gico.png)
 
 
 Passo 4 - Construção do modelo adotado
