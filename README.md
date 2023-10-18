@@ -2,23 +2,24 @@
 
 ### Contexto do desafio:
 
-**O desafio exposto aqui é para uma vaga de Analista de Dados que concorri em Julho/2023 para uma empresa de telecomunicação. Para manter o sigilo da empresa, realizei algumas alterações no documento enviado, removendo os logos e qualquer indentificação possível.** 
+**The challenge presented here is for a Data Analyst position that I applied for in July/2023 for a telecommunications company. In order to maintain the company's confidentiality, I have made some changes to the document I sent, removing logos and any possible identification.** 
 
-Esse desafio é composto por uma apresentação de um problema comum encontrado em operações de contact center através de uma empresa ficticia, uma base de dados fornecida pela empresa e as questões que precisam ser respondidas utilizando a análise de dados.
-
-A empresa pretende que seja implementada uma solução que permita analisar a quantidade e duração de segmentos de chamada:
- - Por motivo de contacto
- - Por linha de atendimento por onde a chamada entrou	
- - Por quem tratou da chamada do cliente
-
-Objetivos:
-- 1.	Escrever as queries de SQL necessárias para o processo de ETL dos dados (estruturação da informação, criação de dimensões, etc.)
-- 2.	Idear e apresentar a solução técnica do modelo de dados necessário para endereçar a necessidade da empresa
-- 3.	Implementar o modelo ideado em Power BI. A modelação poder ser feita em star schema ou em snowflake
-- 4.	Avaliar a capacidade da solução implementada em suportar a acumulação de um grande volume de dados históricos, e/ou sugerir soluções para esse efeito.
+This challenge consists of a presentation of a common problem encountered in contact center operations through a fictitious company, a database provided by the company and the questions that need to be answered using data analysis.
 
 
-### Tecnologias utilizadas
+The company wants to implement a solution to analyze the number and duration of call segments:
+ - By reason for contact
+ - By service line through which the call came in	
+ - Who handled the customer's call
+
+Objectives:
+- 1. write the SQL queries needed for the data ETL process (structuring information, creating dimensions, etc.)
+- 2. devise and present the technical solution for the data model needed to address the company's needs
+- 3. implementing the model in Power BI. Modeling can be done in star schema or snowflake.
+- 4. evaluate the capacity of the implemented solution to support the accumulation of a large volume of historical data, and/or suggest solutions for this purpose.
+
+
+### Technologies used
 
  - SQL Server Management Studio 2022
  - Excel
@@ -30,45 +31,45 @@ Objetivos:
 
 
 
-## Desenvolvimento
+## Development
 ___________________________________________
 
-Passo 1 - Entendimento das tabelas
+Step 1 - Understanding the tables
 
-    Tecnologias utilizadas: Excel
+    Technologies used: Excel
 
-Passo 2 - Ingestão e Tratamento dos dados
+Step 2 - Data intake and processing
 
-    Tecnologias utilizadas: SQL Server Management Studio, Excel
+    Technologies used: SQL Server Management Studio, Excel
 
-Passo 3 - Modelagem Conceitual e Física
+Step 3 - Conceptual and Physical Modeling
 
-    Tecnologias utilizadas: ExcaliDraw, Draw io
+    Technologies used: ExcaliDraw, Draw io
 
-O modelo adotado foi o starschema. Esse modelo  foi escolhido como forma de garantir o menor tipo de ramificação garantindo uma estrutura simplificada e de fácil entendimento simplificando a modelagem e trazendo melhor desempenho. 
+The model adopted was starschema. This model was chosen as a way of ensuring the least branching, guaranteeing a simplified and easy-to-understand structure, simplifying modeling and bringing better performance. 
 
-O modelo starschema geralmente é o mais adequado onde se preza por cenários que a simplicidade e o desempenho são essenciais na ponta final do consumo dos dados.
+The starschema model is generally the most suitable for scenarios where simplicity and performance are essential at the end of data consumption.
 
-O modelo abaixo foi construído a partir das databases que foram entregues.
+The model below was built from the databases delivered by the client.
 
-**Modelo original**
+**Original model**
 
 ![Modelo](https://github.com/vicsfran/chDA-Contact-Center-2023/blob/9f1e683badc8ea10bc580a1081fedc76a9bdbfb6/Assets/Modelo%20original%20database.jpg)
 
-**Modelo starschema**
+**Starschema model**
 
 ![Modelo1](https://github.com/vicsfran/chDA-Contact-Center-2023/blob/b167a485948d2dff7019aff639f58a5823112824/Assets/STARSCHEMA%20-%20Modelo%20L%C3%B3gico.png)
 
 
-Passo 4 - Construção do modelo adotado
+Step 4 - Building the adopted model
 
-    Tecnologias utilizadas: SQL Server Management Studio
+    Technologies used: SQL Server Management Studio
 
-Construção ETL
+ETL construction
 
-  Querys de extração e transformação *__modelo starschema__*
+  Extraction and transformation queries *__starschema model__*
 
-Dimensão Ticket: **tb_dim_ticket**
+Ticket dimension: **tb_dim_ticket**
 
     SELECT  
         CONCAT(ID_Chamada,Utilizador) as SK,
@@ -85,7 +86,7 @@ Dimensão Ticket: **tb_dim_ticket**
     FROM tb_ticket
     ORDER BY data_criação_ticket, hora_criação_ticket
 
-Dimensão Chamada: **tb_dim_chamada**
+Dimension Call: **tb_dim_chamada**
 
     SELECT
             ID_Segmento_de_Chamada,
@@ -94,7 +95,7 @@ Dimensão Chamada: **tb_dim_chamada**
             Classificação_Nível_2_da_Linha_de_Atendimento
     FROM tb_chamada
 
-Fato: **tb_fato**
+Fact: **tb_fact**
 
     WITH cte_chamada 
 	    as (
@@ -103,7 +104,7 @@ Fato: **tb_fato**
 		    ),
     cte_ticket
 	    as (
-		    SELECT CONCAT(ID_Chamada,Utilizador) as sk, *
+		    SELECT CONCAT(ID_Chamada,Utilizador)    as sk, *
 		    FROM tb_ticket
 		    )
 		
@@ -115,8 +116,8 @@ Fato: **tb_fato**
 		    c.Hora_Início_Segmento_Chamada,
 		    c.Hora_Fim_Segmento_Chamada,
 		    CASE WHEN t.ID_Ticket IS NULL THEN NULL	   
-            ELSE t.ID_Ticket END                 as IDTicket,
-		    c.Tempo_Total_de_Atendimento		 as tempo_atendimento
+            ELSE t.ID_Ticket END                 	 as IDTicket,
+		    c.Tempo_Total_de_Atendimento	 as tempo_atendimento
 
     FROM cte_chamada     as c
     LEFT JOIN cte_ticket as t
@@ -125,55 +126,62 @@ Fato: **tb_fato**
     ORDER BY c.data_segmento_chamada, c.hora_início_segmento_chamada
 
 
-Querys para carga:
+Queries for loading:
 
-Tabela dimensão:
+Dimension table:
 
-- Criar a tabela TB_DIM_CHAMADA
+- Create table TB_DIM_CHAMADA
     
         CREATE TABLE tb_dim_chamada (
-            id_segmento_de_chamada 				  VARCHAR(255) PRIMARY KEY,
-            id_chamada 							  VARCHAR(255),
-            nm_linha_de_atendimento 				  VARCHAR(255),
+            id_segmento_de_chamada 		    VARCHAR(255) PRIMARY KEY,
+            id_chamada 				    VARCHAR(255),
+            nm_linha_de_atendimento 		    VARCHAR(255),
             nm_clas_nivel_1_da_linha_de_atendimento VARCHAR(255),
             nm_clas_nivel_2_da_linha_de_atendimento VARCHAR(255)
 	    );
 
- - Criar a tabela TB_DIM_TICKET
+ - Create table TB_DIM_TICKET
 
         CREATE TABLE tb_dim_ticket (
-	    id_ticket 					 VARCHAR(255) PRIMARY KEY,
-	    id_interacao 			     VARCHAR(255),
+	    id_ticket 			VARCHAR(255) PRIMARY KEY,
+	    id_interacao 		VARCHAR(255),
 	    nm_motivo_do_ticket_nivel_1 VARCHAR(255),
 	    nm_motivo_do_ticket_nivel_2 VARCHAR(255)
 	    );
 	
 
-- Criar a tabela TB_FATO
+- Create table TB_FACT
 
         CREATE TABLE tb_fato (
             num_tempo_total_atendimento 	INT,
-            id_segmento_chamada 			INT,
-            id_ticket 					INT,
-            id_utilizador 				INT,
-            id_tempo 						INT,
+            id_segmento_chamada 		INT,
+            id_ticket 				INT,
+            id_utilizador 			INT,
+            id_tempo 				INT,
             FOREIGN KEY (id_segmento_chamada) REFERENCES tb_dim_chamada(id_segmento_chamada),
-            FOREIGN KEY (id_ticket) 		    REFERENCES tb_dim_ticket(id_ticket)
+            FOREIGN KEY (id_ticket) 	      REFERENCES tb_dim_ticket(id_ticket)
         );
 
-Passo 5 - Construção DataViz
+Step 5 - Data visualization construction
 
-    Tecnologias utilizadas:  SQL Server Management Studio, Power BI, Figma
+    Technologies used:  SQL Server Management Studio, Power BI, Figma
 
-[Dashboard Contact Center - Power BI](https://app.powerbi.com/view?r=eyJrIjoiZDM0ZTg0ZTYtMjg5MC00ZmJjLTlhZmUtZmQ1OGQ3NDgyNWFjIiwidCI6IjgyYTU4NjE2LTY4ZDYtNDA1MS05Y2E5LWIyY2U2YmE1MjEzNCJ9&pageName=ReportSectione7a643de1916c78ede94)
+[Contact Center Dashboard - Power BI](https://app.powerbi.com/view?r=eyJrIjoiZDM0ZTg0ZTYtMjg5MC00ZmJjLTlhZmUtZmQ1OGQ3NDgyNWFjIiwidCI6IjgyYTU4NjE2LTY4ZDYtNDA1MS05Y2E5LWIyY2U2YmE1MjEzNCJ9&pageName=ReportSectione7a643de1916c78ede94)
 
-Passo 6 - Resolução das questões de negócios a partir da solução construída
+    DAX
 
-    Tecnologias utilizadas: Power BI
+    Metrics created using DAX language
 
-A empresa pretende que seja implementada uma solução que permita analisar a quantidade e duração de segmentos de chamada:
- - Por motivo de contacto
- - Por linha de atendimento por onde a chamada entrou	
- - Por quem tratou da chamada do cliente
+
+ 
+
+Step 6 - Solving the business issues based on the solution built
+
+    Technologies used: Power BI
+
+The company wants to implement a solution to analyze the number and duration of call segments:
+ - By reason for contact
+ - By service line through which the call came in	
+ - Who handled the customer's call
 
 
