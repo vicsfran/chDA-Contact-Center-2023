@@ -2,7 +2,7 @@
 
 ### Contexto do desafio:
 
-**The challenge presented here is for a Data Analyst position that I applied for in July/2023 for a telecommunications company. In order to maintain the company's confidentiality, I have made some changes to the document I sent, removing logos and any possible identification.** 
+**The challenge presented here is for a Data Analyst position that I applied for a telecommunications company. In order to maintain the company's confidentiality, I have made some changes to the document I sent, removing logos and any possible identification.** 
 
 This challenge consists of a presentation of a common problem encountered in contact center operations through a fictitious company, a database provided by the company and the questions that need to be answered using data analysis.
 
