@@ -1,6 +1,6 @@
 # chDA Contact Center 2023
 
-### Contexto do desafio:
+### Challenge
 
 **The challenge presented here is for a Data Analyst position that I applied for a telecommunications company. In order to maintain the company's confidentiality, I have made some changes to the document I sent, removing logos and any possible identification.** 
 
